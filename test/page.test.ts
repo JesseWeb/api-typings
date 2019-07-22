@@ -13,6 +13,8 @@ Page({
     onLoad() {
         this.route
         this.tapOnBtn()
+
+        getCurrentPages().map(p => p.options)
     },
     onHide() {
 
