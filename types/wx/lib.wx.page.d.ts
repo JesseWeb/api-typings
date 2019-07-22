@@ -92,6 +92,13 @@ declare namespace Page {
     */
     data: Readonly<D>;
 
+    /**
+     * 打开当前页面路径中的参数
+     *
+     * 最低基础库 `2.1.0`
+     */
+    options: Record<string, string>
+
     /** `setData` 函数用于将数据从逻辑层发送到视图层（异步），同时改变对应的 `this.data` 的值（同步）。
      *
      * **注意：**
