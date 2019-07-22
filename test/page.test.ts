@@ -63,11 +63,15 @@ Page<{}, { backdata: {}, f(): void }>({
 Page({
     onLoad(e: { x?: string, www: string }) {
         e.www
+    },
+    f(){
+        this.options.www
     }
 })
 Page({
     onLoad(e: Record<'x' | 'y', string>) {
         this.setData(e);
+        this.options.x
     },
     f() {
     },

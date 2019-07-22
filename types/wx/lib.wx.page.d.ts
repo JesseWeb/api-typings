@@ -81,7 +81,10 @@ declare namespace Page {
     };
   }
 
-  interface PageInstance<D> {
+  interface PageInstance<
+    D,
+    TOnloadOptions extends OnLoadQuery = OnLoadQuery
+    > {
     /** 页面的初始数据
     *
     * `data` 是页面第一次渲染使用的**初始数据**。
@@ -97,7 +100,7 @@ declare namespace Page {
      *
      * 最低基础库 `2.1.0`
      */
-    options: Record<string, string>
+    options: TOnloadOptions;
 
     /** `setData` 函数用于将数据从逻辑层发送到视图层（异步），同时改变对应的 `this.data` 的值（同步）。
      *
@@ -137,7 +140,7 @@ declare namespace Page {
 
   interface PageOptions<
     D extends IAnyObject = any,
-    // T extends IAnyObject = any
+    TOnloadOptions extends OnLoadQuery = OnLoadQuery
     > {
     /** 页面的初始数据
       *
@@ -155,7 +158,7 @@ declare namespace Page {
      */
     onLoad?(
       /** 打开当前页面路径中的参数 */
-      query: OnLoadQuery
+      query: TOnloadOptions
     ): void;
     /** 生命周期回调—监听页面显示
      *
@@ -230,8 +233,11 @@ declare namespace Page {
   }
 
   interface PageConstructor {
-    <D extends IAnyObject, T extends IAnyObject>(
-      options: PageOptions<D> & T & ThisType<PageInstance<D> & T>
+    <D extends IAnyObject,
+      T extends IAnyObject,
+      TOnloadOptions extends OnLoadQuery = OnLoadQuery
+    >(
+      options: PageOptions<D, TOnloadOptions> & T & ThisType<PageInstance<D, TOnloadOptions> & T>
     ): void;
   }
 
