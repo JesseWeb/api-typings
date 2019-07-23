@@ -1,3 +1,5 @@
+/// <reference lib="es6"/>
+
 Page({
     extend: {
         k: 'v'
@@ -17,7 +19,6 @@ Page({
         getCurrentPages().map(p => p.options)
     },
     onHide() {
-
     },
     onShow() {
         this.setData({
@@ -55,35 +56,77 @@ Page<{}, { backdata: {}, f(): void }>({
     onLoad(e) {
         e['x']
     },
-    backdata: {},
+    backdata: {
+        d: 123
+    },
     f() {
-
     },
 })
 Page({
     onLoad(e: { x?: string, www: string }) {
         e.www
     },
-    f(){
+    f() {
+        this.setData({});
         this.options.www
+    },
+    onTabItemTap(){
+        this.f();
     }
 })
 Page({
-    onLoad(e: Record<'x' | 'y', string>) {
-        this.setData(e);
-        this.options.x
-    },
-    f() {
-    },
-    onPageScroll() {
-    },
-    onShareAppMessage(e) {
-        e.from
-        return {}
-    },
-    onResize(e) {
+       async onLoad(e: Record<'x' | 'y', string>) {
+            this.setData(e);
+            // this.options.y
+            this.options.x
+        },
+        f() {
+            this.options.y
+        },
+    //     onPageScroll() {
+    //     },
+    onShareAppMessage() {
+        // this.options['e'] = e.from;
+        this.onTabItemTap
         this.f()
-        e.size.windowHeight
+        // e.from();
+        // this.onReady
+        // this.onUnload
+        // this.
+        return this.s();
+        // this.
+        // return {}
+    },
+    s() {
+        // this.onReachBottom
+        // this.data
+        this.getTabBar
+        this.s()
+        // this.onTabItemTap()
+        this.route
+        this.getTabBar
+        this.s();
+        this.getTabBar();
+        // this.
+        // this.
+        // this.onTabItemTap();
+        return { title: 'xxx' }
+    },
+    //     onResize(e) {
+    //         this.f()
+    //         e.size.windowHeight
+    //     },
+    //     onPullDownRefresh(){
+    //     },
+    // async 
+    onTabItemTap(o) {
+        
+        // this.
+        
+        o.index
+        // o.
+        // this.options.y = 
+        console.log(o.index)
     }
 })
 Page({})

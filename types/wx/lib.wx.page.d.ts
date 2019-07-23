@@ -139,9 +139,9 @@ declare namespace Page {
   type OnLoadQuery = { [queryKey: string]: string | undefined };
 
   interface PageOptions<
-    D extends IAnyObject = any,
+    D extends IAnyObject,
     TOnloadOptions extends OnLoadQuery = OnLoadQuery
-    > {
+    > extends Record<string, any> {
     /** 页面的初始数据
       *
       * `data` 是页面第一次渲染使用的**初始数据**。
@@ -156,10 +156,10 @@ declare namespace Page {
      *
      * 页面加载时触发。一个页面只会调用一次，可以在 onLoad 的参数中获取打开当前页面路径中的参数。
      */
-    onLoad?(
+    onLoad?: (
       /** 打开当前页面路径中的参数 */
       query: TOnloadOptions
-    ): void;
+    ) => void;
     /** 生命周期回调—监听页面显示
      *
      * 页面显示/切入前台时触发。
@@ -214,30 +214,30 @@ declare namespace Page {
      *
      * 监听用户滑动页面事件。
      */
-    onPageScroll?(
+    onPageScroll?: (
       /** 页面滚动参数 */
       options: IPageScrollOption
-    ): void;
+    ) => void;
 
     /** 当前是 tab 页时，点击 tab 时触发，最低基础库： `1.9.0` */
-    onTabItemTap?(
+    onTabItemTap?: (
       /** tab 点击参数 */
       options: ITabItemTapOption
-    ): void;
+    ) => void;
 
     /** 窗口尺寸改变时触发，最低基础库：`2.4.0` */
-    onResize?(
+    onResize?: (
       /** 窗口尺寸参数 */
       options: IResizeOption,
-    ): void;
+    ) => void;
   }
 
   interface PageConstructor {
-    <D extends IAnyObject,
-      T extends IAnyObject,
-      TOnloadOptions extends OnLoadQuery = OnLoadQuery
-    >(
-      options: PageOptions<D, TOnloadOptions> & T & ThisType<PageInstance<D, TOnloadOptions> & T>
+    < D extends IAnyObject,
+      TPage extends PageOptions<D, TOnloadOptions>,
+      TOnloadOptions extends OnLoadQuery = OnLoadQuery,
+      >(
+      options: PageOptions<D, TOnloadOptions> & TPage & ThisType<PageInstance<D, TOnloadOptions> & TPage>
     ): void;
   }
 
