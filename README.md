@@ -11,6 +11,7 @@
 * Page
     * [x] this.setData() 无需感叹号，强类型验证
     * [x] this.route 无感叹号
+    * [x] 补充 this.options
     * [x] 补充 this.getTabBar() 支持 (含类型安全检查、泛型参数)
     * [x] Page.onLoad 支持undefined
     * [x] Page.onLoad / onShareAppMessage / onPageScroll / onResize 等参数自动绑定
