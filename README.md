@@ -32,6 +32,7 @@ Fixed 修复官方的错误定义
 * [x] fix wx.Color 定义错误
 * [x] fix 支持 canvasContext.setFillStyle() 传入 wx.CanvasGradient 类型
 * [x] fix canvasContext.drawImage() 可选 3/5/9 个参数
+* [x] fix canvasContext setTextAlign / setTextBaseline 约束
 * [x] fix relativeToViewport()
 * [x] fix setTimeout/setInterval rest 参数
 * [x] fix innerAudio onerror/offerror callback

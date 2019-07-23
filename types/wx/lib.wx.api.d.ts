@@ -6037,7 +6037,7 @@ ctx.draw()
 * 最低基础库： `1.1.0` */
     setTextAlign(
       /** 文字的对齐方式 */
-      align: string,
+      align: 'left' | 'center' | 'right',
     ): void;
     /** [CanvasContext.setTextBaseline(string textBaseline)](CanvasContext.setTextBaseline.md)
 * 
@@ -6075,7 +6075,7 @@ ctx.draw()
 * 最低基础库： `1.4.0` */
     setTextBaseline(
       /** 文字的竖直对齐方式 */
-      textBaseline: string,
+      textBaseline: 'normal' | 'middle' | 'bottom' | 'top',
     ): void;
     /** [CanvasContext.setTransform(number scaleX, number scaleY, number skewX, number skewY, number translateX, number translateY)](CanvasContext.setTransform.md)
      *

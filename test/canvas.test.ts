@@ -22,6 +22,11 @@ Page({
     ctx.strokeRect(20, 198, 76, 76)
     ctx.drawImage('abc', 20, 198, 76, 76)
 
+    ctx.save()
+    ctx.setTextAlign('left')
+    ctx.setTextBaseline('top')
+    ctx.restore()
+
     ctx.draw(false, () => {
       wx.canvasToTempFilePath({
         canvasId: 'share-canvas',
