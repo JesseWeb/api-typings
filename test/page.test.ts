@@ -1,3 +1,5 @@
+/// <reference lib="es6"/>
+
 Page({
     extend: {
         k: 'v'
@@ -17,7 +19,6 @@ Page({
         getCurrentPages().map(p => p.options)
     },
     onHide() {
-
     },
     onShow() {
         this.setData({
@@ -51,39 +52,102 @@ Page({
 
 
 
-Page<{}, { backdata: {}, f(): void }>({
+Page<{}, { backdata: { x: string }, f(): void }>({
     onLoad(e) {
         e['x']
     },
-    backdata: {},
-    f() {
-
+    backdata: {
+        x: 'xx'
+        // d: 123
     },
+    f() {
+        this.backdata.x
+    },
+    y() {
+        this.options
+    }
 })
 Page({
     onLoad(e: { x?: string, www: string }) {
         e.www
     },
-    f(){
+    f() {
+        this.setData({});
         this.options.www
+    },
+    onTabItemTap() {
+        this.f();
     }
 })
 Page({
-    onLoad(e: Record<'x' | 'y', string>) {
+    async onLoad(e: Record<'x' | 'y', string>) {
         this.setData(e);
+        // this.options.y
         this.options.x
     },
     f() {
+        this.options.y
     },
-    onPageScroll() {
-    },
-    onShareAppMessage(e) {
-        e.from
-        return {}
-    },
-    onResize(e) {
+    //     onPageScroll() {
+    //     },
+    onShareAppMessage() {
+        // this.options['e'] = e.from;
+        this.onTabItemTap
         this.f()
-        e.size.windowHeight
+        // e.from();
+        // this.onReady
+        // this.onUnload
+        // this.
+        return this.s();
+        // this.
+        // return {}
+    },
+    s() {
+        // this.onReachBottom
+        // this.data
+        this.getTabBar
+        this.s()
+        // this.onTabItemTap()
+        this.route
+        this.getTabBar
+        this.s();
+        this.getTabBar();
+        // this.
+        // this.
+        // this.onTabItemTap();
+        return { title: 'xxx' }
+    },
+    //     onResize(e) {
+    //         this.f()
+    //         e.size.windowHeight
+    //     },
+    //     onPullDownRefresh(){
+    //     },
+    // async 
+    onTabItemTap(o) {
+
+        // this.
+
+        o.index
+        // o.
+        // this.options.y = 
+        console.log(o.index)
     }
 })
+
+Page({
+    data: {
+        xxx: 1223
+    },
+    onLoad(o) {
+        this.setData(o);
+        this.x();
+        this.getTabBar()
+        // this.
+    },
+    x() {
+
+    }
+})
+
 Page({})
