@@ -52,15 +52,20 @@ Page({
 
 
 
-Page<{}, { backdata: {}, f(): void }>({
+Page<{}, { backdata: { x: string }, f(): void }>({
     onLoad(e) {
         e['x']
     },
     backdata: {
-        d: 123
+        x: 'xx'
+        // d: 123
     },
     f() {
+        this.backdata.x
     },
+    y() {
+        this.options
+    }
 })
 Page({
     onLoad(e: { x?: string, www: string }) {
@@ -70,19 +75,19 @@ Page({
         this.setData({});
         this.options.www
     },
-    onTabItemTap(){
+    onTabItemTap() {
         this.f();
     }
 })
 Page({
-       async onLoad(e: Record<'x' | 'y', string>) {
-            this.setData(e);
-            // this.options.y
-            this.options.x
-        },
-        f() {
-            this.options.y
-        },
+    async onLoad(e: Record<'x' | 'y', string>) {
+        this.setData(e);
+        // this.options.y
+        this.options.x
+    },
+    f() {
+        this.options.y
+    },
     //     onPageScroll() {
     //     },
     onShareAppMessage() {
@@ -120,13 +125,29 @@ Page({
     //     },
     // async 
     onTabItemTap(o) {
-        
+
         // this.
-        
+
         o.index
         // o.
         // this.options.y = 
         console.log(o.index)
     }
 })
+
+Page({
+    data: {
+        xxx: 1223
+    },
+    onLoad(o) {
+        this.setData(o);
+        this.x();
+        this.getTabBar()
+        // this.
+    },
+    x() {
+
+    }
+})
+
 Page({})

@@ -136,7 +136,8 @@ declare namespace Page {
   /**
    * 默认Onload参数类型
    */
-  type OnLoadQuery = { [queryKey: string]: string | undefined };
+  type OnLoadQuery = Partial<Record<string, string>>
+  // { [queryKey: string]: string | undefined };
 
   interface PageOptions<
     D extends IAnyObject,
@@ -233,7 +234,7 @@ declare namespace Page {
   }
 
   interface PageConstructor {
-    < D extends IAnyObject,
+    <D extends IAnyObject,
       TPage extends PageOptions<D, TOnloadOptions>,
       TOnloadOptions extends OnLoadQuery = OnLoadQuery,
       >(
