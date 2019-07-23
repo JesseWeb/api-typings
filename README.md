@@ -16,7 +16,7 @@
     * [x] 补充 this.options
     * [x] 补充 this.getTabBar() 支持 (含类型安全检查、泛型参数)
     * [x] Page.onLoad 支持undefined
-    * [x] Page.onLoad / onShareAppMessage / onPageScroll / onResize 等参数自动绑定
+    * [x] Page.onLoad / onPageScroll / onResize 等参数自动绑定
 * Component
     * [x] properties 完整定义支持和类型绑定
     * [x] data 绑定 properties 数据
