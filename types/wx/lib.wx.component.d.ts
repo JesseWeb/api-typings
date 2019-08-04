@@ -151,7 +151,7 @@ declare interface ComponentOptions {
 }
 
 type ThisComponent<TProp, TData, TMethod extends Record<string, Function>, TExt> = ThisType<WxComponent<TProp, TData, TMethod> & { properties: TProp, data: TData & TProp } & TMethod & TExt>
-interface BaseComponet<TProp, TData, TMethod extends Record<string, Function>, TExt = {}> {
+interface BaseComponent<TProp, TData, TMethod extends Record<string, Function>, TExt = {}> {
   /**
   * 组件的对外属性，是属性名到属性设置的映射表
   */
@@ -218,5 +218,5 @@ declare function Component<
   TMethod extends Record<string, Function> = Record<string, Function>,
   TExt = {}
 >(
-  options: TExt & BaseComponet<TProp, TData, TMethod, Partial<TExt>>
+  options: TExt & BaseComponent<TProp, TData, TMethod, Partial<TExt>>
 ): void;
