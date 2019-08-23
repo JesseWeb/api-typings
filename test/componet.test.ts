@@ -48,37 +48,42 @@ Component({
             this.dataset.x;
             this.data.x;
         },
-        onTest(e:event.Base){
+        onTest(e: event.Base) {
             this.triggerEvent(e.type)
         }
     }
 })
 
 Component({
-    ext:0,
-    lifetimes:{
-        ready(){
-            this.ext=1
-            
+    ext: 0,
+    lifetimes: {
+        ready() {
+            this.ext = 1
+
         }
     },
-    methods:{
-        t(){
-            const a=this.ext;
+    methods: {
+        t() {
+            const a = this.ext;
         }
     }
 })
 
 Component({
-    data:{
-        f:false
+    data: {
+        f: false
     },
-    created(){
-        this.setData({f:true});
+    created() {
+        this.setData({ f: true });
     },
-    methods:{
-        f(){
+    methods: {
+        f() {
             this.created!();
+            const c = this.selectComponent<{ d: string }, { f: Function }>("");
+            c.data.d
+            c.f()
+            const allc = this.selectAllComponents("");
+            allc[0].created!();
         }
     }
 })

@@ -16,6 +16,7 @@ type RecordPropsDefinition<TProp> = {
 }
 
 
+declare type WxComponentInstance<TData, TMethod> = WxComponent<{}, TData, TMethod> & TMethod
 
 declare interface WxComponent<TProp, TData, TMethod> {
   /** 组件的文件路径 */
@@ -84,11 +85,11 @@ declare interface WxComponent<TProp, TData, TMethod> {
     options: wx.CreateIntersectionObserverOption,
   ): wx.IntersectionObserver;
   /** 使用选择器选择组件实例节点，返回匹配到的第一个组件实例对象（会被 `wx://component-export` 影响） */
-  selectComponent<TComData = {}, TMethod = {}>(selector: string): WxComponent<any, TComData, TMethod>;
+  selectComponent<TData = Record<string, any>, TMethod = Record<string, Function>>(selector: string): WxComponentInstance<TData, TMethod>;
   /** 使用选择器选择组件实例节点，返回匹配到的全部组件实例对象组成的数组 */
-  selectAllComponents(selector: string): WxComponent<any, Record<string, any>, Record<string, any>>[];
+  selectAllComponents<TData = Record<string, any>, TMethod = Record<string, Function>>(selector: string): WxComponentInstance<TData, TMethod>[];
   /** 获取这个关系所对应的所有关联节点，参见 组件间关系 */
-  getRelationNodes(relationKey: string): WxComponent<any, Record<string, any>, Record<string, any>>[];
+  getRelationNodes<TData = Record<string, any>, TMethod = Record<string, Function>>(relationKey: string): WxComponentInstance<TData, TMethod>[];
   /** 立刻执行 callback ，其中的多个 setData 之间不会触发界面绘制（只有某些特殊场景中需要，如用于在不同组件同时 setData 时进行界面绘制同步）*/
   groupSetData(callback?: () => void): void;
   /** 返回当前页面的 custom-tab-bar 的组件实例
