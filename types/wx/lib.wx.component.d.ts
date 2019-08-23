@@ -34,6 +34,32 @@ declare interface WxComponent<TProp, TData, TMethod> {
   data: Readonly<TData & TProp>;
 
   /**
+   * 组件生命周期函数，在组件实例进入页面节点树时执行，注意此时不能调用 `setData`
+   * @deprecated
+   */
+  created?(): void;
+  /**
+   * 组件生命周期函数，在组件实例进入页面节点树时执行 
+   * @deprecated
+   * */
+  attached?(): void;
+  /** 
+   * 组件生命周期函数，在组件布局完成后执行，此时可以获取节点信息（使用 [SelectorQuery]((SelectorQuery))）
+   * @deprecated
+   *  
+   */
+  ready?(): void;
+  /** 
+   * 组件生命周期函数，在组件实例被移动到节点树另一个位置时执行 
+   * @deprecated
+   */
+  moved?(): void;
+  /** 
+   * 组件生命周期函数，在组件实例被从页面节点树移除时执行
+   * @deprecated
+   */
+  detached?(): void;
+  /**
    * 设置data并执行视图层渲染
    */
   setData(
@@ -58,11 +84,11 @@ declare interface WxComponent<TProp, TData, TMethod> {
     options: wx.CreateIntersectionObserverOption,
   ): wx.IntersectionObserver;
   /** 使用选择器选择组件实例节点，返回匹配到的第一个组件实例对象（会被 `wx://component-export` 影响） */
-  selectComponent(selector: string): WxComponent<any, any, any>;
+  selectComponent<TComData = {}, TMethod = {}>(selector: string): WxComponent<any, TComData, TMethod>;
   /** 使用选择器选择组件实例节点，返回匹配到的全部组件实例对象组成的数组 */
-  selectAllComponents(selector: string): WxComponent<any, any, any>[];
+  selectAllComponents(selector: string): WxComponent<any, Record<string, any>, Record<string, any>>[];
   /** 获取这个关系所对应的所有关联节点，参见 组件间关系 */
-  getRelationNodes(relationKey: string): WxComponent<any, any, any>[];
+  getRelationNodes(relationKey: string): WxComponent<any, Record<string, any>, Record<string, any>>[];
   /** 立刻执行 callback ，其中的多个 setData 之间不会触发界面绘制（只有某些特殊场景中需要，如用于在不同组件同时 setData 时进行界面绘制同步）*/
   groupSetData(callback?: () => void): void;
   /** 返回当前页面的 custom-tab-bar 的组件实例
@@ -209,7 +235,7 @@ interface BaseComponent<TProp, TData, TMethod extends Record<string, Function>, 
    */
   pageLifetimes?: PageLifetimes & ThisComponent<TProp, TData, TMethod, TExt>;
 
-  behaviors?: (string|WxBehavior<any,any,any>)[],
+  behaviors?: (string | WxBehavior<any, any, any>)[],
   /**
    * 定义段过滤器，用于自定义组件扩展，参见 [自定义组件扩展](extend.md)
    *
@@ -231,5 +257,5 @@ declare function Component<
   TMethod extends Record<string, Function> = Record<string, Function>,
   TExt = {}
 >(
-  options: TExt & BaseComponent<TProp, TData, TMethod, Partial<TExt>>
+  options: TExt & BaseComponent<TProp, TData, TMethod, Partial<TExt>> & ThisComponent<TProp, TData, TMethod, TExt>
 ): void;

@@ -68,3 +68,17 @@ Component({
         }
     }
 })
+
+Component({
+    data:{
+        f:false
+    },
+    created(){
+        this.setData({f:true});
+    },
+    methods:{
+        f(){
+            this.created!();
+        }
+    }
+})

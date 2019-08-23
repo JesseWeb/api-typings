@@ -1,4 +1,4 @@
-Behavior({
+const be = Behavior({
     data:{
         'x':1
     },
@@ -7,7 +7,7 @@ Behavior({
     },
     methods:{
         f(){
-            // this.created();
+            this.created();
         },
         x(){
             this.x();
@@ -34,7 +34,16 @@ Behavior({
         // this.
     },
     attached(){
-        
+
     }
     
+})
+
+Component({
+    behaviors: [be,''],
+    methods:{
+        f(){
+            
+        }
+    }
 })
