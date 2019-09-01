@@ -140,6 +140,7 @@ Page({
         xxx: 1223
     },
     onLoad(o) {
+        o.x;
         this.setData(o);
         this.x();
         this.getTabBar()
@@ -151,3 +152,13 @@ Page({
 })
 
 Page({})
+
+interface LoadOptions {
+    k:string,
+}
+
+Page({
+    onLoad(op:LoadOptions){
+        op.k;
+    }
+})
