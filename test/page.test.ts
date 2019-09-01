@@ -139,19 +139,30 @@ Page({
     data: {
         xxx: 1223
     },
-    onLoad(o) {
-        o.x;
-        this.setData(o);
-        this.x();
-        this.getTabBar()
+    onLoad() {
+        // o.x;
+        // this.setData(o);
+        // this.x();
+        // this.getTabBar()
         // this.
     },
     x() {
-
+        this.options.x
     }
 })
 
-Page({})
+Page({
+    // data:{},
+    onLoad(op){
+        this.setData(op);
+    }
+})
+
+Page({
+    f(){
+        this.options.x;
+    }
+})
 
 interface LoadOptions {
     k:string,

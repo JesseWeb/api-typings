@@ -83,7 +83,7 @@ declare namespace Page {
 
   interface PageInstance<
     D,
-    TOnloadOptions extends object = OnLoadQuery
+    TOnloadOptions extends OnLoadQuery | object = OnLoadQuery
     > {
     /** 页面的初始数据
     *
@@ -141,7 +141,7 @@ declare namespace Page {
 
   interface PageOptions<
     D extends IAnyObject,
-    TOnloadOptions extends object = OnLoadQuery
+    TOnloadOptions extends OnLoadQuery | object = OnLoadQuery
     > extends Record<string, any> {
     /** 页面的初始数据
       *
@@ -236,7 +236,7 @@ declare namespace Page {
   interface PageConstructor {
     <D extends IAnyObject,
       TPage extends PageOptions<D, TOnloadOptions>,
-      TOnloadOptions extends object = OnLoadQuery,
+      TOnloadOptions extends OnLoadQuery | object = OnLoadQuery,
       >(
       options: PageOptions<D, TOnloadOptions> & TPage & ThisType<PageInstance<D, TOnloadOptions> & TPage>
     ): void;
