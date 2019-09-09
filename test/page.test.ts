@@ -52,7 +52,7 @@ Page({
 
 
 
-Page<{}, { backdata: { x: string }, f(): void }>({
+Page<{}, { backdata: { x: string }, f(): void }, { x: string }>({
     onLoad(e) {
         e['x']
     },
@@ -80,7 +80,10 @@ Page({
     }
 })
 Page({
-    async onLoad(e: Record<'x' | 'y', string>) {
+    op: {
+        a: 'string',
+    },
+    onLoad(e: Record<'x' | 'y', string>) {
         this.setData(e);
         // this.options.y
         this.options.x
@@ -145,6 +148,7 @@ Page({
         // this.x();
         // this.getTabBar()
         // this.
+
     },
     x() {
         this.options.x
@@ -153,23 +157,57 @@ Page({
 
 Page({
     // data:{},
-    onLoad(op){
+    onLoad(op) {
         this.setData(op);
     }
 })
 
 Page({
-    f(){
+    f() {
         this.options.x;
     }
 })
 
 interface LoadOptions {
-    k:string,
+    k: string,
 }
 
 Page({
-    onLoad(op:LoadOptions){
+    onLoad(op: LoadOptions) {
         op.k;
+
+    }
+})
+Page({})
+
+
+Page({
+    data: {
+        x: 1,
+    },
+    shareMessageCard: {},
+    tapOnAction(e: event.Custom) {
+    },
+    onShareAppMessage(e) {
+        this.data.x
+        return this.shareMessageCard;
+    },
+});
+
+
+
+Page({
+    data: {
+        x: '' as 'x' | ''
+    },
+    onLoad(op: Record<'k', string | undefined>) {
+        op.k;
+    },
+    onShareAppMessage(e) {
+        return this.getF();
+    },
+    getF(): {} {
+        this.getTabBar();
+        return {}
     }
 })

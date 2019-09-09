@@ -136,7 +136,7 @@ declare namespace Page {
   /**
    * 默认Onload参数类型
    */
-  type OnLoadQuery = Partial<Record<string, string>>
+  type OnLoadQuery = Record<string, string>
   // { [queryKey: string]: string | undefined };
 
   interface PageOptions<
