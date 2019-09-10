@@ -127,6 +127,9 @@ declare namespace Page {
     /** 到当前页面的路径，类型为`String`。最低基础库： `1.2.0` */
     route: string;
 
+    /** 页面的文件路径 */
+    is: string;
+
     /** 返回当前页面的 custom-tab-bar 的组件实例
      *
      * 注意: 在基础库 < 2.5.0 时该方法可能会不存在, 需要先判断 getTabBar 方法是否存在 */
@@ -142,7 +145,7 @@ declare namespace Page {
   interface PageOptions<
     D extends IAnyObject,
     TOnloadOptions extends OnLoadQuery | object = OnLoadQuery
-    > extends Record<string, any> {
+    > {
     /** 页面的初始数据
       *
       * `data` 是页面第一次渲染使用的**初始数据**。
@@ -200,13 +203,13 @@ declare namespace Page {
      */
     onReachBottom?(): void;
     /** 用户点击右上角转发
-     *
-     * 监听用户点击页面内转发按钮（`<button>` 组件 `open-type="share"`）或右上角菜单“转发”按钮的行为，并自定义转发内容。
-     *
-     * **注意：只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮**
-     *
-     * 此事件需要 return 一个 Object，用于自定义转发内容
-     */
+    *
+    * 监听用户点击页面内转发按钮（`<button>` 组件 `open-type="share"`）或右上角菜单“转发”按钮的行为，并自定义转发内容。
+    *
+    * **注意：只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮**
+    *
+    * 此事件需要 return 一个 Object，用于自定义转发内容
+    */
     onShareAppMessage?(
       /** 分享发起来源参数 */
       options: IShareAppMessageOption
@@ -234,12 +237,9 @@ declare namespace Page {
   }
 
   interface PageConstructor {
-    <D extends IAnyObject,
-      TPage extends PageOptions<D, TOnloadOptions>,
-      TOnloadOptions extends OnLoadQuery | object = OnLoadQuery,
-      >(
-      options: PageOptions<D, TOnloadOptions> & TPage & ThisType<PageInstance<D, TOnloadOptions> & TPage>
-    ): void;
+    <TData extends IAnyObject, TCustom extends IAnyObject, Toptions extends OnLoadQuery | object = OnLoadQuery>(
+      options: Options<TData, TCustom, Toptions>,
+    ): void
   }
 
   interface GetCurrentPages {
@@ -249,7 +249,24 @@ declare namespace Page {
       PageInstance<IAnyObject> &
       T)[];
   }
+
+  type Instance<
+    TData extends IAnyObject,
+    TCustom extends IAnyObject,
+    Toptions extends OnLoadQuery | object
+    > =
+    PageInstance<TData, Toptions> &
+    TCustom
+  type Options<
+    TData extends IAnyObject,
+    TCustom extends IAnyObject,
+    Toptions extends OnLoadQuery | object
+    > = (TCustom & PageOptions<TData, Toptions>) &
+    ThisType<Instance<TData, TCustom, Toptions>>
+
 }
 
 declare const Page: Page.PageConstructor;
 declare const getCurrentPages: Page.GetCurrentPages;
+
+

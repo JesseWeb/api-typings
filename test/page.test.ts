@@ -52,7 +52,7 @@ Page({
 
 
 
-Page<{}, { backdata: { x: string }, f(): void }, { x: string }>({
+Page({
     onLoad(e) {
         e['x']
     },
@@ -64,7 +64,7 @@ Page<{}, { backdata: { x: string }, f(): void }, { x: string }>({
         this.backdata.x
     },
     y() {
-        this.options
+        this.options.x
     }
 })
 Page({
@@ -185,12 +185,14 @@ Page({
     data: {
         x: 1,
     },
-    shareMessageCard: {},
+    shareMessageCard() {
+        return {};
+    },
     tapOnAction(e: event.Custom) {
     },
     onShareAppMessage(e) {
         this.data.x
-        return this.shareMessageCard;
+        return this.shareMessageCard();
     },
 });
 
@@ -203,10 +205,10 @@ Page({
     onLoad(op: Record<'k', string | undefined>) {
         op.k;
     },
-    onShareAppMessage(e) {
+    onShareAppMessage() {
         return this.getF();
     },
-    getF(): {} {
+    getF() {
         this.getTabBar();
         return {}
     }

@@ -87,3 +87,47 @@ Component({
         }
     }
 })
+
+interface Item {
+    id: string;
+    name: string;
+}
+Component({
+    properties: {
+        list: (Array as unknown) as () => Item[], // ()=>Item[] 定义一个item[]数组的构造器
+        item: {
+            type: (Object as unknown) as () => Item, // ()=>Item 定义 Item Object的构造器
+            observer(newData: Item, oldData: Item) {
+                if (newData && oldData && newData.id === oldData.id) {
+                    return;
+                }
+            },
+        },
+    },
+    methods: {
+        doSth() {
+            console.log(this.properties.item.id);
+            console.log(this.properties.list[0]);
+        },
+    },
+});
+
+Component({
+    properties: {
+        list: Array as PropType<Item[]>, // ()=>Item[] 定义一个item[]数组的构造器
+        item: {
+            type: (Object as unknown) as () => Item, // ()=>Item 定义 Item Object的构造器
+            observer(newData: Item, oldData: Item) {
+                if (newData && oldData && newData.id === oldData.id) {
+                    return;
+                }
+            },
+        },
+    },
+    methods: {
+        doSth() {
+            console.log(this.properties.item.id);
+            console.log(this.properties.list[0]);
+        },
+    },
+});

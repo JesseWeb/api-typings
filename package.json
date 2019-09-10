@@ -27,6 +27,6 @@
     },
     "homepage": "https://github.com/MS-DG/api-typings#readme",
     "devDependencies": {
-        "typescript": "^3.6.2"
+        "typescript": "^3.5.3"
     }
 }
