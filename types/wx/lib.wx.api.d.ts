@@ -2122,6 +2122,20 @@ backgroundAudioManager.src = 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb
     /** 加密算法的初始向量，详细见[加密数据解密算法] */
     iv: string;
   }
+  interface RequestSubscribeMessageOption {
+    /**需要订阅的消息模板的id的集合（注意：iOS客户端7.0.6版本、Android客户端7.0.7版本之后的一次性订阅/长期订阅才支持多个模板消息，iOS客户端7.0.5版本、Android客户端7.0.6版本之前的一次订阅只支持一个模板消息）消息模板id在[微信公众平台(mp.weixin.qq.com)-功能-订阅消息]中配置 */
+    tmplIds: Array<string>;
+    /** 接口调用结束的回调函数（调用成功、失败都会执行） */
+    complete?: RequestSubscribeMessageCompleteCallback;
+    /** 接口调用失败的回调函数 */
+    fail?: RequestSubscribeMessageFailCallback;
+    /** 接口调用成功的回调函数 */
+    success?: RequestSubscribeMessageSuccessCallback;
+  }
+  interface RequestSubscribeMessageSuccessCallbackResult {
+    errMsg: string;
+    [key: string]: string;
+  }
   interface GetWifiListOption {
     /** 接口调用结束的回调函数（调用成功、失败都会执行） */
     complete?: GetWifiListCompleteCallback;
@@ -9095,6 +9109,17 @@ wx.getWeRunData({
 * 
 * 最低基础库： `1.2.0` */
     getWeRunData(option?: GetWeRunDataOption): void;
+    /** [wx.requestSubscribeMessage(Object object)](wx.requestSubscribeMessage.md)
+* 
+* 注意：2.8.2 版本开始，用户发生点击行为或者发起支付回调后，才可以调起订阅消息界面。
+* 
+* **示例代码**
+* 
+* 
+* ```js
+* 
+* 最低基础库： `2.8.2` */
+    requestSubscribeMessage(option?: RequestSubscribeMessageOption): void;
     /** [wx.getWifiList(Object object)](wx.getWifiList.md)
 * 
 * 请求获取 Wi-Fi 列表。在 `onGetWifiList` 注册的回调中返回 `wifiList` 数据。
@@ -11952,6 +11977,16 @@ wx.writeBLECharacteristicValue({
   type GetWeRunDataSuccessCallback = (
     result: GetWeRunDataSuccessCallbackResult,
   ) => void;
+  /** 接口调用结束的回调函数（调用成功、失败都会执行） */
+  type RequestSubscribeMessageCompleteCallback = (res: GeneralCallbackResult) => void;
+  /** 接口调用失败的回调函数 */
+  type RequestSubscribeMessageFailCallback = (res: GeneralCallbackResult) => void;
+  /** 接口调用成功的回调函数 */
+  type RequestSubscribeMessageSuccessCallback = (
+    result: RequestSubscribeMessageSuccessCallbackResult,
+  ) => void;
+
+
   /** 接口调用结束的回调函数（调用成功、失败都会执行） */
   type GetWifiListCompleteCallback = (res: GeneralCallbackResult) => void;
   /** 接口调用失败的回调函数 */
